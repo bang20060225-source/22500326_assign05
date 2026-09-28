@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>덧셈계산기</h1>
+    <input type="text" id="num1" size="4">
+    <input type="text" id="num2" size="4">
+    
+    <button id="addBtn" onclick="add()">+</button>
+    
+    <input id="result" readonly>
+
+    <script>
+        function add() {
+            const num1 = document.querySelector("#num1").value;
+            const num2 = document.querySelector("#num2").value;
+            const result = Number(num1) + Number(num2);
+
+            document.querySelector("#result").value = result;
+        }
+    </script>
+</body>
+</html>
