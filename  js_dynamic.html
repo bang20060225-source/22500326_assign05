@@ -5,22 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        function delFruit(event) {
+            event.target.parentElement.remove();
+        }
         window.addEventListener("load",function(){
             const fruit = document.querySelector("#fruit");
             const addbtn = document.querySelector("#btn");
             const list = document.querySelector("#list");
 
             addbtn.addEventListener("click", function(){
-                let flist = fruit.value.split(".");
-                for (let i =0; i<fruit.lenth; i++){
-                    li.textContent = flist[i];
-                    list.appendChild(li);
 
-                    const btn = document.createElement("button");
-                    btn.textContent='X';
-                    li.appendChild(btn);
-                    btn.addEventListener("click",delFruit);
+                const value = fruit.value.trim();
+
+                if (value === "") {
+                    return;
                 }
+
+                const li = document.createElement("li");
+                li.textContent = value;
+
+                const btn = document.createElement("button");
+                btn.textContent = "X";
+
+                li.appendChild(btn);
+                list.appendChild(li);
+
+                btn.addEventListener("click", delFruit);
+
+                fruit.value = "";
             });
         });
     </script>
