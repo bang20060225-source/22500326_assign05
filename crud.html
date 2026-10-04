@@ -4,114 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Book List</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        div {
+            border: 2px solid green;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        .btn-edit {
+            background-color: orange;
+            margin-left: 10px;
+        }
+        
+        .btn-edit:hover {
+            background-color: darkorange;
+        }
+
+        .btn-delete {
+            background-color: red;
+        }
+        
+        .btn-delete:hover {
+            background-color: darkred;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            border-bottom: 1px solid gray;
+            padding: 10px 0;
+        }
+    </style>
 </head>
 
 <body>
     <h1>My Book List</h1>
 
-    <input type="text" id="title" placeholder="책 제목">
-    <input type="text" id="author" placeholder="저자">
-    <input type="text" id="genre" placeholder="장르">
-    <input type="number" id="year" placeholder="출판연도">
-    <input type="number" id="rating" placeholder="평점">
-    <input type="text" id="status" placeholder="상태">
+    <div>
+        <input type="text" id="title" placeholder="책 제목">
+        <input type="text" id="author" placeholder="저자">
+        <input type="text" id="genre" placeholder="장르">
+        <input type="number" id="year" placeholder="출판연도">
+        <input type="number" id="rating" placeholder="평점">
+        <input type="text" id="status" placeholder="상태">
 
-    <button id="addBook">책 추가</button>
+        <button id="addBook">책 추가</button>
+    </div>
 
     <ul id="bookList"></ul>
 
     <script>
         let books = [
-            {
-                id: 1,
-                title: "소년과 두더지와 여우와 말",
-                author: "찰리 맥커시",
-                genre: "에세이",
-                year: 2019,
-                rating: 5,
-                status: "읽음"
-            },
-            {
-                id: 2,
-                title: "안녕이라 그랬어",
-                author: "김애란",
-                genre: "단편소설",
-                year: 2024,
-                rating: 4,
-                status: "읽음"
-            },
-            {
-                id: 3,
-                title: "계화의 여름",
-                author: "배명은",
-                genre: "소설",
-                year: 2025,
-                rating: 3,
-                status: "읽음"
-            },
-            {
-                id: 4,
-                title: "급류",
-                author: "정대건",
-                genre: "소설",
-                year: 2022,
-                rating: 5,
-                status: "읽음"
-            },
-            {
-                id: 5,
-                title: "달러구트 꿈 백화점",
-                author: "이미예",
-                genre: "소설",
-                year: 2020,
-                rating: 4,
-                status: "읽는 중"
-            },
-            {
-                id: 6,
-                title: "AI 윤리에 대한 모든 것",
-                author: "마크 코켈버그",
-                genre: "윤리",
-                year: 2023,
-                rating: 3,
-                status: "읽음"
-            },
-            {
-                id: 7,
-                title: "제철 행복",
-                author: "김신지",
-                genre: "에세이",
-                year: 2024,
-                rating: 0,
-                status: "읽는 중"
-            },
-            {
-                id: 8,
-                title: "좋은 사람 도감",
-                author: "묘엔 그구루, 사사키 히나, 마나코 지에미, 이지수",
-                genre: "에세이",
-                year: 2024,
-                rating: 4,
-                status: "읽음"
-            },
-            {
-                id: 9,
-                title: "모순",
-                author: "양귀자",
-                genre: "소설",
-                year: 1998,
-                rating: 5,
-                status: "읽음"
-            },
-            {
-                id: 10,
-                title: "나미야 잡화점의 기적",
-                author: "히가시노 게이고",
-                genre: "소설",
-                year: 2012,
-                rating: 5,
-                status: "읽음"
-            }
+            { id: 1, title: "소년과 두더지와 여우와 말", author: "찰리 맥커시", genre: "에세이", year: 2019, rating: 5, status: "읽음" },
+            { id: 2, title: "안녕이라 그랬어", author: "김애란", genre: "단편소설", year: 2024, rating: 4, status: "읽음" },
+            { id: 3, title: "계화의 여름", author: "배명은", genre: "소설", year: 2025, rating: 3, status: "읽음" },
+            { id: 4, title: "급류", author: "정대건", genre: "소설", year: 2022, rating: 5, status: "읽음" },
+            { id: 5, title: "달러구트 꿈 백화점", author: "이미예", genre: "소설", year: 2020, rating: 4, status: "읽는 중" },
+            { id: 6, title: "AI 윤리에 대한 모든 것", author: "마크 코켈버그", genre: "윤리", year: 2023, rating: 3, status: "읽음" },
+            { id: 7, title: "제철 행복", author: "김신지", genre: "에세이", year: 2024, rating: 0, status: "읽는 중" },
+            { id: 8, title: "좋은 사람 도감", author: "묘엔 그구루, 사사키 히나, 마나코 지에미, 이지수", genre: "에세이", year: 2024, rating: 4, status: "읽음" },
+            { id: 9, title: "모순", author: "양귀자", genre: "소설", year: 1998, rating: 5, status: "읽음" },
+            { id: 10, title: "나미야 잡화점의 기적", author: "히가시노 게이고", genre: "소설", year: 2012, rating: 5, status: "읽음" }
         ];
 
         let editId = null;
@@ -122,10 +99,12 @@
 
             books.forEach(function(book) {
                 const li = document.createElement("li");
+                
                 li.innerText = book.title + " / " + book.author + " / " + book.genre + " / " + book.year + " / " + book.rating + "점 / " + book.status + " ";
 
                 const editBtn = document.createElement("button");
                 editBtn.innerText = "수정";
+                editBtn.className = "btn-edit";
                 
                 editBtn.addEventListener("click", function() {
                     document.querySelector("#title").value = book.title;
@@ -141,6 +120,7 @@
 
                 const deleteBtn = document.createElement("button");
                 deleteBtn.innerText = "삭제";
+                deleteBtn.className = "btn-delete";
 
                 deleteBtn.addEventListener("click", function() {
                     const isDelete = confirm("정말로 삭제하시겠습니까?");
