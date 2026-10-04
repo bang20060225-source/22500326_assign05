@@ -9,6 +9,15 @@
 <body>
     <h1>My Book List</h1>
 
+    <input type="text" id="title" placeholder="책 제목">
+    <input type="text" id="author" placeholder="저자">
+    <input type="text" id="genre" placeholder="장르">
+    <input type="number" id="year" placeholder="출판연도">
+    <input type="number" id="rating" placeholder="평점">
+    <input type="text" id="status" placeholder="상태">
+
+    <button id="addBook">책 추가</button>
+
     <ul id="bookList"></ul>
 
     <script>
@@ -113,13 +122,56 @@
             books.forEach(function(book) {
                 const li = document.createElement("li");
 
-                li.innerText = book.title;
+                li.innerText = book.title + " / " + book.author + " / " + book.genre + " / " + book.year + " / " + book.rating + "점 / " + book.status;
 
                 bookList.appendChild(li);
             });
         }
 
         render();
+
+        document.querySelector("#addBook").addEventListener("click", function() {
+
+            const title = document.querySelector("#title").value;
+            const author = document.querySelector("#author").value;
+            const genre = document.querySelector("#genre").value;
+            const year = document.querySelector("#year").value;
+            const rating = document.querySelector("#rating").value;
+            const status = document.querySelector("#status").value;
+
+            if (title.trim() === "") {
+                alert("책 제목을 입력해주세요!");
+                document.querySelector("#title").focus();
+                return;
+            }
+            
+            if (author.trim() === "") {
+                alert("저자를 입력해주세요!");
+                document.querySelector("#author").focus();
+                return;
+            }
+
+            const book = {
+                id: books.length + 1,
+                title: title,
+                author: author,
+                genre: genre,
+                year: year,
+                rating: rating,
+                status: status
+            };
+
+            books.push(book);
+
+            render();
+
+            document.querySelector("#title").value = "";
+            document.querySelector("#author").value = "";
+            document.querySelector("#genre").value = "";
+            document.querySelector("#year").value = "";
+            document.querySelector("#rating").value = "";
+            document.querySelector("#status").value = "";
+            });
     </script>
 </body>
 </html>
