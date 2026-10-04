@@ -114,16 +114,47 @@
             }
         ];
 
+        let editId = null;
+
         function render() {
             const bookList = document.querySelector("#bookList");
-
             bookList.innerHTML = "";
 
             books.forEach(function(book) {
                 const li = document.createElement("li");
+                li.innerText = book.title + " / " + book.author + " / " + book.genre + " / " + book.year + " / " + book.rating + "점 / " + book.status + " ";
 
-                li.innerText = book.title + " / " + book.author + " / " + book.genre + " / " + book.year + " / " + book.rating + "점 / " + book.status;
+                const editBtn = document.createElement("button");
+                editBtn.innerText = "수정";
+                
+                editBtn.addEventListener("click", function() {
+                    document.querySelector("#title").value = book.title;
+                    document.querySelector("#author").value = book.author;
+                    document.querySelector("#genre").value = book.genre;
+                    document.querySelector("#year").value = book.year;
+                    document.querySelector("#rating").value = book.rating;
+                    document.querySelector("#status").value = book.status;
 
+                    editId = book.id;
+                    document.querySelector("#addBook").innerText = "수정 완료";
+                });
+
+                const deleteBtn = document.createElement("button");
+                deleteBtn.innerText = "삭제";
+
+                deleteBtn.addEventListener("click", function() {
+                    const isDelete = confirm("정말로 삭제하시겠습니까?");
+                    
+                    if (isDelete === true) {
+                        books = books.filter(function(b) {
+                            return b.id !== book.id; 
+                        });
+                        render();
+                    }
+                });
+
+                li.appendChild(editBtn);
+                li.appendChild(deleteBtn);
                 bookList.appendChild(li);
             });
         }
@@ -131,7 +162,6 @@
         render();
 
         document.querySelector("#addBook").addEventListener("click", function() {
-
             const title = document.querySelector("#title").value;
             const author = document.querySelector("#author").value;
             const genre = document.querySelector("#genre").value;
@@ -151,17 +181,38 @@
                 return;
             }
 
-            const book = {
-                id: books.length + 1,
-                title: title,
-                author: author,
-                genre: genre,
-                year: year,
-                rating: rating,
-                status: status
-            };
+            if (rating === "" || rating < 0 || rating > 5) {
+                alert("평점은 0에서 5 사이의 숫자로 입력해주세요!");
+                document.querySelector("#rating").focus();
+                return;
+            }
 
-            books.push(book);
+            if (editId !== null) {
+                books.forEach(function(book) {
+                    if (book.id === editId) {
+                        book.title = title;
+                        book.author = author;
+                        book.genre = genre;
+                        book.year = year;
+                        book.rating = rating;
+                        book.status = status;
+                    }
+                });
+                
+                editId = null;
+                document.querySelector("#addBook").innerText = "책 추가";
+            } else {
+                const book = {
+                    id: Date.now(),
+                    title: title,
+                    author: author,
+                    genre: genre,
+                    year: year,
+                    rating: rating,
+                    status: status
+                };
+                books.push(book);
+            }
 
             render();
 
@@ -171,7 +222,7 @@
             document.querySelector("#year").value = "";
             document.querySelector("#rating").value = "";
             document.querySelector("#status").value = "";
-            });
+        });
     </script>
 </body>
 </html>
