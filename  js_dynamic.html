@@ -15,6 +15,11 @@
                 for (let i =0; i<fruit.lenth; i++){
                     li.textContent = flist[i];
                     list.appendChild(li);
+
+                    const btn = document.createElement("button");
+                    btn.textContent='X';
+                    li.appendChild(btn);
+                    btn.addEventListener("click",delFruit);
                 }
             });
         });
@@ -23,9 +28,7 @@
 <body>
     <input type="text" id="fruit" placeholder="과일을 입력하세요">
     <button id="addbtn">추가</button>
-    <ul id="list">
-
-    </ul>
-    <button id="삭제">삭제</button>
+    <ul id="list"></ul>
+    <button id="removebtn">삭제</button>
 </body>
 </html>
